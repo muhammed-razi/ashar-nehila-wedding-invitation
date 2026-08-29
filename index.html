@@ -76,7 +76,12 @@
 }
 
 html{
+
   scroll-behavior:smooth;
+
+  scroll-padding-top:20px;
+
+  -webkit-text-size-adjust:100%;
 }
 
 body{
@@ -91,9 +96,13 @@ body{
 
   overflow-x:hidden;
 
+  -webkit-font-smoothing:antialiased;
+
+  text-rendering:optimizeLegibility;
+
   transition:
-    background .5s ease,
-    color .5s ease;
+    background .6s ease,
+    color .6s ease;
 }
 
 button{
@@ -108,11 +117,15 @@ a{
 h1,
 h2,
 h3{
+
   font-family:var(--serif);
 
   margin:0;
 
   color:var(--green);
+
+  transition:
+    color .45s ease;
 }
 
 p{
@@ -122,6 +135,26 @@ p{
   font-size:19px;
 
   color:var(--ink);
+
+  transition:
+    color .45s ease;
+}
+
+a,
+button,
+.btn{
+
+  -webkit-tap-highlight-color:transparent;
+}
+
+button:focus-visible,
+a:focus-visible{
+
+  outline:
+    2px solid
+    var(--gold);
+
+  outline-offset:4px;
 }
 
 .script{
@@ -129,6 +162,9 @@ p{
   font-family:var(--script);
 
   color:var(--red);
+
+  transition:
+    color .45s ease;
 }
 
 .eyebrow{
@@ -144,6 +180,9 @@ p{
   color:var(--green-light);
 
   font-weight:700;
+
+  transition:
+    color .45s ease;
 }
 
 
@@ -695,6 +734,12 @@ section{
   position:relative;
 
   overflow:hidden;
+
+  scroll-margin-top:20px;
+
+  transition:
+    background .7s ease,
+    color .7s ease;
 }
 
 .wrap{
@@ -728,6 +773,9 @@ section{
     rgba(13,59,46,.05);
 
   pointer-events:none;
+
+  transition:
+    color .5s ease;
 }
 
 .section-leaf.left{
@@ -792,6 +840,10 @@ section{
   color:var(--red);
 
   font-size:14px;
+
+  transition:
+    background .5s ease,
+    color .5s ease;
 }
 
 
@@ -808,8 +860,8 @@ section{
     scale(.98);
 
   transition:
-    opacity 1s ease,
-    transform 1s ease;
+    opacity 1s cubic-bezier(.2,.8,.2,1),
+    transform 1s cubic-bezier(.2,.8,.2,1);
 }
 
 .reveal.in{
@@ -868,6 +920,9 @@ section{
 
   animation:
     heroName 4s ease-in-out infinite;
+
+  transition:
+    color .5s ease;
 }
 
 @keyframes heroName{
@@ -934,6 +989,9 @@ section{
 .hero-amp path{
 
   stroke:var(--green-light);
+
+  transition:
+    stroke .5s ease;
 }
 
 .hero-sub{
@@ -977,9 +1035,11 @@ section{
     0 8px 30px
     rgba(13,59,46,.07);
 
-  transition:.35s;
-
-  color:var(--ink);
+  transition:
+    transform .4s cubic-bezier(.2,.8,.2,1),
+    box-shadow .4s ease,
+    background .5s ease,
+    color .5s ease;
 }
 
 .hero-meta > div:hover{
@@ -1174,8 +1234,10 @@ section{
   overflow:hidden;
 
   transition:
-    transform .45s ease,
-    box-shadow .45s ease;
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    box-shadow .45s ease,
+    background .5s ease,
+    border-color .4s ease;
 
   color:var(--ink);
 }
@@ -1327,7 +1389,11 @@ section{
 
   box-shadow:var(--shadow);
 
-  transition:.45s;
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    box-shadow .45s ease,
+    background .5s ease,
+    border-color .4s ease;
 
   overflow:hidden;
 
@@ -1412,6 +1478,9 @@ section{
   color:#52645C;
 
   margin:8px 0;
+
+  transition:
+    color .45s ease;
 }
 
 
@@ -1534,11 +1603,49 @@ section{
 
   background:transparent;
 
-  transition:.3s;
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    box-shadow .35s ease,
+    background .35s ease,
+    border-color .35s ease,
+    color .35s ease;
 
   position:relative;
 
   overflow:hidden;
+}
+
+.btn::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+
+  left:-120%;
+
+  width:70%;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  transition:
+    left .65s ease;
+}
+
+.btn:hover::after{
+
+  left:140%;
 }
 
 .btn:hover{
@@ -1549,6 +1656,13 @@ section{
 
   transform:
     translateY(-3px);
+}
+
+.btn:active{
+
+  transform:
+    translateY(-1px)
+    scale(.98);
 }
 
 .btn.solid{
@@ -1656,7 +1770,10 @@ section{
     0 10px 30px
     rgba(0,0,0,.12);
 
-  transition:.3s;
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    border-color .35s ease,
+    background .5s ease;
 }
 
 .cd-box:hover{
@@ -1804,6 +1921,11 @@ canvas#scratchCanvas{
    VENUE
 ========================================================= */
 
+#venue{
+
+  background:var(--ivory);
+}
+
 .venue-card{
 
   position:relative;
@@ -1826,27 +1948,40 @@ canvas#scratchCanvas{
     1px solid
     rgba(214,181,108,.65);
 
-  box-shadow:var(--shadow);
+  box-shadow:
+    0 18px 55px
+    rgba(13,59,46,.15);
 
   overflow:hidden;
 
   color:var(--ink);
+
+  transition:
+    transform .55s cubic-bezier(.2,.8,.2,1),
+    box-shadow .55s cubic-bezier(.2,.8,.2,1),
+    border-color .4s ease,
+    background .5s ease;
 }
+
+
+/* REMOVED LARGE HEART BACKGROUND */
 
 .venue-card::before{
 
-  content:"❤";
+  display:none;
+}
 
-  position:absolute;
+.venue-card:hover{
 
-  font-size:220px;
+  transform:
+    translateY(-7px);
 
-  color:
-    rgba(197,31,58,.035);
+  box-shadow:
+    0 28px 70px
+    rgba(13,59,46,.20);
 
-  right:-30px;
-
-  bottom:-90px;
+  border-color:
+    rgba(214,181,108,.9);
 }
 
 .venue-info{
@@ -1854,6 +1989,57 @@ canvas#scratchCanvas{
   position:relative;
 
   z-index:2;
+}
+
+
+/* =========================================================
+   VENUE BUTTON ROW
+========================================================= */
+
+.btn-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:16px;
+
+  margin-top:28px;
+
+  width:100%;
+}
+
+.btn-row .btn{
+
+  min-width:170px;
+
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    box-shadow .35s ease,
+    background .35s ease,
+    border-color .35s ease,
+    color .35s ease;
+}
+
+.btn-row .btn:hover{
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 10px 25px
+    rgba(13,59,46,.15);
+}
+
+.btn-row .btn:active{
+
+  transform:
+    translateY(-1px)
+    scale(.98);
 }
 
 
@@ -1929,6 +2115,8 @@ canvas#scratchCanvas{
 #shareSection{
 
   text-align:center;
+
+  background:var(--ivory);
 }
 
 .share-row{
@@ -1961,6 +2149,10 @@ footer{
   padding:50px 20px;
 
   font-size:15px;
+
+  transition:
+    background .6s ease,
+    color .5s ease;
 }
 
 footer .script{
@@ -2002,8 +2194,12 @@ footer .script{
   transform:scale(.7);
 
   transition:
-    opacity .5s,
-    transform .5s;
+    opacity .5s ease,
+    transform .5s cubic-bezier(.2,.8,.2,1),
+    background .5s ease,
+    color .4s ease,
+    border-color .4s ease,
+    box-shadow .4s ease;
 }
 
 #musicBtn.show,
@@ -2089,7 +2285,7 @@ footer .script{
 
 
 /* =========================================================
-   NIGHT MODE — COMPLETE VISIBILITY FIX
+   NIGHT MODE
 ========================================================= */
 
 body.night{
@@ -2567,6 +2763,10 @@ body.night .venue-card{
     rgba(214,181,108,.6);
 
   color:#F5F9F6 !important;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.28);
 }
 
 body.night .venue-card h3{
@@ -2788,6 +2988,35 @@ body.night a{
     max-width:300px;
   }
 
+
+  /* VENUE MOBILE */
+
+  .venue-card{
+
+    padding:38px 20px;
+
+    border-radius:20px;
+  }
+
+  .btn-row{
+
+    flex-direction:column;
+
+    gap:13px;
+
+    margin-top:25px;
+  }
+
+  .btn-row .btn{
+
+    width:100%;
+
+    max-width:300px;
+
+    min-width:0;
+  }
+
+
   #musicBtn,
   #waFloat{
 
@@ -2812,10 +3041,34 @@ body.night a{
 
 
 /* =========================================================
+   TABLET
+========================================================= */
+
+@media(min-width:521px) and (max-width:800px){
+
+  .btn-row{
+
+    gap:14px;
+  }
+
+  .btn-row .btn{
+
+    min-width:155px;
+  }
+
+}
+
+
+/* =========================================================
    REDUCED MOTION
 ========================================================= */
 
 @media(prefers-reduced-motion:reduce){
+
+  html{
+
+    scroll-behavior:auto !important;
+  }
 
   *,
   *::before,
@@ -2826,10 +3079,21 @@ body.night a{
     animation-iteration-count:1 !important;
 
     transition-duration:.01ms !important;
-
-    scroll-behavior:auto !important;
   }
 
+}
+
+
+/* =========================================================
+   SMOOTH PAGE LOADING
+========================================================= */
+
+html{
+
+  opacity:1;
+
+  transition:
+    opacity .5s ease;
 }
 
 </style>
@@ -3663,10 +3927,9 @@ body.night a{
         </p>
 
 
-        <div
-          class="btn-row"
-          style="justify-content:center;"
-        >
+        <!-- UPDATED VENUE BUTTON ROW -->
+
+        <div class="btn-row">
 
           <a
             class="btn solid"
@@ -4718,7 +4981,7 @@ const waMsg =
 ⏰ 12:00 PM – 12:30 PM
 📍 Younus Convention Center, Asramam, Kollam
 
-We would love to celebrate this special day with you! 💚❤️
+We would love to celebrate this special day with you! ❤️
 
 ${pageUrl()}`
 
@@ -4823,6 +5086,13 @@ document
 
 
       a.click();
+
+      setTimeout(
+        ()=>{
+          URL.revokeObjectURL(a.href);
+        },
+        1000
+      );
 
     }
   );
